@@ -13,3 +13,4 @@ D -> The desition of the machine ( Can be one of 4 options: R for going one cell
 5-The initial position of the head (As because the turing machine's head can be replaced manually to any desired position on the infinite tape)
 
 #The program then computes on the string and outputs to the user the final string as well as the final position of the head.
+ 
