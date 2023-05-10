@@ -76,7 +76,8 @@ int main() {
 	// Input the input string
 	cout << "Enter the input string:" << endl;
 	cin >> input;
-    input.append("#");
+    
+    input = "#" + input + "#";
     if (!std::all_of(input.begin(), input.end(), [stringSymbols](char c) {
         return string(stringSymbols).find(c) != string::npos || c == '#';
         })) {
