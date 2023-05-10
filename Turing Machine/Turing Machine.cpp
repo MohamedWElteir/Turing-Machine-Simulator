@@ -19,10 +19,20 @@ int main() {
     // Input the number of states
     cout << "Enter the number of states:" << endl;
     cin >> numberOfStates;
+    if (numberOfStates <= 0)
+    {
+		cout << "The number of states must be greater than 0." << endl;
+		exit(1);
+	}
 
     // Input the number of string symbols
     cout << "Enter the number of string symbols:" << endl;
     cin >> numberOfStringAlphabet;
+    if (numberOfStringAlphabet <= 0)
+    {
+		cout << "The number of string symbols must be greater than 0." << endl;
+		exit(1);
+	}
 
     // Input the string symbols
     cout << "Enter the string symbols:" << endl;
@@ -33,6 +43,10 @@ int main() {
     // Input the number of machine symbols
     cout << "Enter the number of machine alphabet:" << endl;
     cin >> numberOfMachineAlphabet;
+    if (numberOfMachineAlphabet <= 0)
+    {
+        cout << "The number of machine symbols must be greater than 0." << endl;
+    }
 
     // Input the machine symbols
     machineSymbols.insert('L');
@@ -64,7 +78,7 @@ int main() {
 	cin >> input;
     input.append("#");
     if (!std::all_of(input.begin(), input.end(), [stringSymbols](char c) {
-        return std::string(stringSymbols).find(c) != std::string::npos || c == '#';
+        return string(stringSymbols).find(c) != string::npos || c == '#';
         })) {
         std::cout << "The input string contains symbols that are not in the string alphabet." << std::endl;
         exit(1);
@@ -74,11 +88,14 @@ int main() {
 	cin >> currentHead;
 
     int currentState = 0;
+    int nextState;
+    char transition[5];
+    char currentSymbol;
+    char nextSymbol;
     while (true) {
 
-        // Set the current symbol and transition
-        char transition[5];
-        char currentSymbol = input[currentHead];
+        // Set the current symbol
+         currentSymbol = input[currentHead];
 
         // loop through the transition table to find the next state
         for (int i = 0; i < numberOfStates * (numberOfStringAlphabet + numberOfMachineAlphabet); i++) {
@@ -91,11 +108,23 @@ int main() {
         }
 
         // Get the next state and symbol
-        int nextState = (int)(transition[2] - '0');
-        char nextSymbol = transition[3];
-
-        // Write the next symbol
-        input[currentHead] = nextSymbol;
+        if (((int)(transition[2] - '0')) >= numberOfStates) {
+			std::cout << "The machine has halted due to an invalid number of states" << std::endl;
+			exit(1);
+		}
+        else {
+             nextState = (int)(transition[2] - '0');
+             nextSymbol = transition[3];
+        }
+         // if there is a symbol that is not in the string alphabet or the machine alphabet, exit
+        if (machineSymbols.find(nextSymbol) == machineSymbols.end() && string(stringSymbols).find(nextSymbol) == string::npos ) {
+			std::cout << "The machine has halted due to an invalid symbol." << std::endl;
+			exit(1);
+        }
+        else {
+            // Write the next symbol
+            input[currentHead] = nextSymbol;
+        }
 
         // Update the current state
         currentState = nextState;
@@ -113,12 +142,13 @@ int main() {
             std::cout << "The final position of the head is: " << currentHead << std::endl;
             exit(0);
         case 'N':
-            std::cout << "Exited with status NO" << std::endl;
+            std::cout << "Exited with status: NO " << std::endl;
             std::cout << "The final string is: " << input << std::endl;
             std::cout << "The final position of the head is: " << currentHead << std::endl;
             exit(1);
         default:
-            std::cout << "The machine has halted due to the head going out of bounds." << std::endl;
+            std::cout << "The machine has halted due to an invalid symbol." << std::endl;
+            exit(1);
         }
     }
 	
