@@ -80,6 +80,12 @@ int main() {
         for (int i = 0; i < numberOfMachineAlphabet; i++) {
             char symbol;
             cin >> symbol;
+            // if the symbol is in the string alphabet, exit
+            if (stringSymbols.find(symbol) != stringSymbols.end()) {
+				cout << "The symbol " << symbol << " is already implemented in the string alphabet. Please enter a different symbol." << endl;
+				i--;
+			}
+			else
             if (symbol == 'L' || symbol == 'R' || symbol == 'Y' || symbol == 'N' || symbol == '#') {
                 cout << "The symbol " << symbol << " is already implemented in the machine. Please enter a different symbol." << endl;
                 i--;
