@@ -74,9 +74,7 @@ int main() {
     machineSymbols.insert('Y');
     machineSymbols.insert('N');
     machineSymbols.insert('#');
-    if (numberOfMachineAlphabet == 0) {
-		
-	}
+    if (numberOfMachineAlphabet == 0) {}
     else {
         cout << "Enter the machine symbols:" << endl;
         for (int i = 0; i < numberOfMachineAlphabet; i++) {
@@ -100,6 +98,7 @@ int main() {
 
     // Input the transition table
     cout << "Enter the transition table:" << endl;
+    if(numberOfMachineAlphabet == 0){numberOfMachineAlphabet = 1;}
     for (int i = 0; i < numberOfStates * (numberOfStringAlphabet + numberOfMachineAlphabet); i++) {
         for (int j = 0; j < 5; j++) {
             cin >> transitionTable[i][j];
