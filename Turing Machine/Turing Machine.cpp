@@ -45,6 +45,10 @@ int main() {
             cout << "The symbol " << symbol << " is reserved for the machine alphabet. Please enter a different symbol." << endl;
             i--;
         }
+        else if (symbol == '#') {
+			cout << "The symbol " << symbol << " is reserved as a blank symbol. Please enter a different symbol." << endl;
+			i--;
+		}
         else if (stringSymbols.find(symbol) == stringSymbols.end()) { // check for duplicates
             stringSymbols.insert(symbol);
         }
@@ -58,9 +62,10 @@ int main() {
     // Input the number of machine symbols
     cout << "Enter the number of machine alphabet:" << endl;
     cin >> numberOfMachineAlphabet;
-    if (numberOfMachineAlphabet <= 0)
+    if (numberOfMachineAlphabet < 0)
     {
-        cout << "The number of machine symbols must be greater than 0." << endl;
+        cout << "The number of symbols can't be in negative." << endl;
+        exit(1);
     }
 
     // Input the machine symbols
@@ -68,23 +73,29 @@ int main() {
     machineSymbols.insert('R');
     machineSymbols.insert('Y');
     machineSymbols.insert('N');
-    cout << "Enter the machine symbols:" << endl;
-    for (int i = 0; i < numberOfMachineAlphabet; i++) {
-        char symbol;
-        cin >> symbol;
-        if (symbol == 'L' || symbol == 'R' || symbol == 'Y' || symbol == 'N') {
-			cout << "The symbol " << symbol << " is already implemented in the machine. Please enter a different symbol." << endl;
-			i--;
-		}
-		else
-        if (machineSymbols.find(symbol) == machineSymbols.end()) { // check for duplicates
-            machineSymbols.insert(symbol);
+    machineSymbols.insert('#');
+    if (numberOfMachineAlphabet == 0) {
+		
+	}
+    else {
+        cout << "Enter the machine symbols:" << endl;
+        for (int i = 0; i < numberOfMachineAlphabet; i++) {
+            char symbol;
+            cin >> symbol;
+            if (symbol == 'L' || symbol == 'R' || symbol == 'Y' || symbol == 'N' || symbol == '#') {
+                cout << "The symbol " << symbol << " is already implemented in the machine. Please enter a different symbol." << endl;
+                i--;
+            }
+            else
+                if (machineSymbols.find(symbol) == machineSymbols.end()) { // check for duplicates
+                    machineSymbols.insert(symbol);
+                }
+                else {
+                    cout << "Duplicate symbol " << symbol << " found. Please enter a different symbol." << endl;
+                    i--;
+                }
+
         }
-        else {
-            cout << "Duplicate symbol " << symbol << " found. Please enter a different symbol." << endl;
-            i--;
-        }
- 
     }
 
     // Input the transition table
