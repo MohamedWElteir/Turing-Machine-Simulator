@@ -172,9 +172,15 @@ int main() {
         switch (transition[4]) {
         case 'R':
             currentHead++;
+            if (currentHead >= input.length()) {
+				input += '#';
+			}
             break;
         case 'L':
             currentHead--;
+            if (currentHead < 0) {
+               input = '#' + input;
+            }
             break;
         case 'Y':
             cout << "The final string is: " << input << endl;
