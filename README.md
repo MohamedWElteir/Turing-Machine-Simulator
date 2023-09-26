@@ -17,6 +17,9 @@
 4. The sequence of characters (the string to be tested).
 5. The initial position of the head (As the Turing machine's head can be manually replaced to any desired position on the infinite tape).
 
+# Sample run:
+![Turing Machine](sample.png)
+
 The program then computes on the string and outputs to the user the final string as well as the final position of the head.
 # The latest update now supports the following features:
 - The machine now can make computation on the string, just like a real Turing machine.
