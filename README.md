@@ -1,7 +1,8 @@
 # Turing Machine Simulator
 
-## This is a very simple implementation of a semi-decidable Turing machine that reads input from the user:
-
+## This is a very simple implementation of a semi-decidable Turing machine that reads input from the user and perform computations according to the transition table.
+### This project was done as part of the final project of the Theory of Computations course.
+The program takes the input from the user as following:
 1. Number of machine states.
 2. Number of string symbols and the symbols as well as the machine's.
 3. The transition function. This is the 5-tuples of a Turing machine and must be provided to the machine with every possible combination of states and symbols to avoid hanging. The program takes the input as 5-tupled characters as follows:
@@ -21,6 +22,4 @@
 ![Turing Machine](sample.png)
 
 The program then computes on the string and outputs to the user the final string as well as the final position of the head.
-# The latest update now supports the following features:
-- The machine now can make computation on the string, just like a real Turing machine.
    
